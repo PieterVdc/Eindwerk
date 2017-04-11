@@ -25,7 +25,7 @@ public class KlantDAO extends DAO{
 				String gsm = rs.getString("gsm");
 				String email = rs.getString("email");
 				rs.close();
-				String btwNr = resultSet.getString("btwNr");
+				String btwNr = resultSet.getString("btwNummer");
 				String bedrijfsnaam = resultSet.getString("bedrijfsnaam");
 				String contactpersoon = resultSet.getString("contactpersoon");
 				Bedrijf bedrijf = new Bedrijf(id,tel,gsm,email,btwNr,bedrijfsnaam,contactpersoon);

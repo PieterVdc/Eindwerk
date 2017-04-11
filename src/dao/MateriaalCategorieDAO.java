@@ -12,7 +12,7 @@ public class MateriaalCategorieDAO extends DAO{
 		
 		try {
 			open();
-			preparedStatement = connect.prepareStatement("SELECT * from materiaalcategorie where id = ?");
+			preparedStatement = connect.prepareStatement("SELECT * from typemateriaal where id = ?");
 			preparedStatement.setInt(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			rs.next();
@@ -29,7 +29,7 @@ public class MateriaalCategorieDAO extends DAO{
 		ArrayList<MateriaalCategorie> materiaalCatList = new ArrayList<>();
 		try {
 			open();
-			resultSet = statement.executeQuery("select * from MateriaalCategorie");
+			resultSet = statement.executeQuery("select * from typemateriaal");
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String naam = resultSet.getString("naam");

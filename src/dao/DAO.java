@@ -25,7 +25,7 @@ public abstract class DAO {
       Class.forName("com.mysql.jdbc.Driver");
       // Setup the connection with the DB
       connect = DriverManager
-          .getConnection("jdbc:mysql://" + host + "/eindwerk?"
+          .getConnection("jdbc:mysql://" + host + "/db_eindwerk?"
               + "user=" + user + "&password=" + passwd + "&useSSL=false" );
       // Statements allow to issue SQL queries to the database
       statement = connect.createStatement();

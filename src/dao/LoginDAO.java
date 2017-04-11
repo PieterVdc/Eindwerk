@@ -8,10 +8,10 @@ public class LoginDAO extends DAO {
 	public boolean checkCombo(String user, String password) {
 		try {
 			open();
-			resultSet = statement.executeQuery("select * from login");
+			resultSet = statement.executeQuery("select Gebruikersnaam,wachtwoord from gebruiker");
 			while (resultSet.next()) {
-				String user1 = resultSet.getString("user");
-				String pwhash = resultSet.getString("pwhash");
+				String user1 = resultSet.getString("Gebruikersnaam");
+				String pwhash = resultSet.getString("wachtwoord");
 				if(user.equals(user1) && BCrypt.checkpw(password, pwhash)){
 					return true;
 				}
@@ -28,7 +28,7 @@ public class LoginDAO extends DAO {
 		try {
 			String pwHash =  BCrypt.hashpw(password, BCrypt.gensalt());
 			open();
-			preparedStatement = connect.prepareStatement("UPDATE login SET pwhash=? WHERE user=?;");
+			preparedStatement = connect.prepareStatement("UPDATE gebruiker SET wachtwoord=? WHERE Gebruikersnaam=?;");
 			preparedStatement.setString(1, pwHash);
 			preparedStatement.setString(2, user);
 			preparedStatement.executeUpdate();

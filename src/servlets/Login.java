@@ -40,6 +40,8 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		LoginDAO loginDAO = new LoginDAO();
+		
+		//TODO remove pw assign
 		loginDAO.setPassword("admin", "admin");
 		String user = request.getParameter("user");
 		String password = request.getParameter("pw");

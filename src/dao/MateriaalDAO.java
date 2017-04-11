@@ -11,13 +11,13 @@ public class MateriaalDAO extends DAO{
 		ArrayList<Materiaal> materiaalList = new ArrayList<>();
 		try {
 			open();
-			resultSet = statement.executeQuery("select * from MateriaalType where deleted is not true");
+			resultSet = statement.executeQuery("select * from Materiaal where deleted is not true");
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String naam = resultSet.getString("naam");
 				String eenheid = resultSet.getString("eenheid");
 				float eenheidsprijs = resultSet.getFloat("eenheidsprijs");
-				int MateriaalCategorieId = resultSet.getInt("MateriaalCategorieId");
+				int MateriaalCategorieId = resultSet.getInt("TypeMateriaalID");
 				Materiaal materiaal = new Materiaal(id, naam, eenheid,eenheidsprijs, MateriaalCategorieId);
 				materiaalList.add(materiaal);
 			}
@@ -31,7 +31,7 @@ public class MateriaalDAO extends DAO{
 	public Materiaal getMateriaal(int id) {
 		try {
 			open();
-			preparedStatement = connect.prepareStatement("SELECT * FROM materiaaltype WHERE id=?;");
+			preparedStatement = connect.prepareStatement("SELECT * FROM materiaal WHERE id=?;");
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			resultSet.next();
@@ -51,7 +51,7 @@ public class MateriaalDAO extends DAO{
 	public void delete(int id){
 		try {
 			open();
-			preparedStatement = connect.prepareStatement("UPDATE materiaaltype SET deleted=true WHERE id=?;");
+			preparedStatement = connect.prepareStatement("UPDATE materiaal SET deleted=true WHERE id=?;");
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -65,7 +65,7 @@ public class MateriaalDAO extends DAO{
 			open();
 			if (materiaal.getId() == -1) {
 				preparedStatement = connect.prepareStatement(
-						"INSERT INTO `materiaaltype` (`naam`,`MateriaalCategorieId`,`eenheid`,`eenheidsprijs`) VALUES (?,?,?,?);");
+						"INSERT INTO `materiaal` (`naam`,`TypeMateriaalID`,`eenheid`,`eenheidsprijs`) VALUES (?,?,?,?);");
 				preparedStatement.setString(1, materiaal.getNaam());
 				preparedStatement.setInt(2, materiaal.getMateriaalCategorieId());
 				preparedStatement.setString(3, materiaal.getEenheid());
@@ -73,7 +73,7 @@ public class MateriaalDAO extends DAO{
 				preparedStatement.executeUpdate();
 			} else {
 				preparedStatement = connect.prepareStatement(
-						"UPDATE `materiaaltype` SET naam=?,MateriaalCategorieId=?,eenheid=?,eenheidsprijs=? WHERE id=?;");
+						"UPDATE `materiaal` SET naam=?,TypeMateriaalID=?,eenheid=?,eenheidsprijs=? WHERE id=?;");
 				preparedStatement.setString(1, materiaal.getNaam());
 				preparedStatement.setInt(2, materiaal.getMateriaalCategorieId());
 				preparedStatement.setString(3, materiaal.getEenheid());
