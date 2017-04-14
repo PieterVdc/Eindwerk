@@ -15,7 +15,7 @@ public class KlantDAO extends DAO{
 			open();
 			resultSet = statement.executeQuery("select * from bedrijf");
 			while (resultSet.next()) {
-				int id = resultSet.getInt("klantId");
+				int id = resultSet.getInt("id");
 				
 				preparedStatement = connect.prepareStatement("SELECT * FROM klant WHERE id=?;");
 				preparedStatement.setInt(1, id);
@@ -26,7 +26,7 @@ public class KlantDAO extends DAO{
 				String email = rs.getString("email");
 				rs.close();
 				String btwNr = resultSet.getString("btwNummer");
-				String bedrijfsnaam = resultSet.getString("bedrijfsnaam");
+				String bedrijfsnaam = resultSet.getString("bedrijfnaam");
 				String contactpersoon = resultSet.getString("contactpersoon");
 				Bedrijf bedrijf = new Bedrijf(id,tel,gsm,email,btwNr,bedrijfsnaam,contactpersoon);
 				klantList.add(bedrijf);
@@ -45,7 +45,7 @@ public class KlantDAO extends DAO{
 			open();
 			resultSet = statement.executeQuery("select * from particulier");
 			while (resultSet.next()) {
-				int id = resultSet.getInt("klantId");
+				int id = resultSet.getInt("Id");
 				
 				preparedStatement = connect.prepareStatement("SELECT * FROM klant WHERE id=?;");
 				preparedStatement.setInt(1, id);
@@ -72,7 +72,7 @@ public class KlantDAO extends DAO{
 	public Klant getKlant(int id) {
 		try {
 			open();
-			preparedStatement = connect.prepareStatement("SELECT klantId FROM bedrijf WHERE klantId=?;");
+			preparedStatement = connect.prepareStatement("SELECT Id FROM bedrijf WHERE Id=?;");
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			if(resultSet.next()){

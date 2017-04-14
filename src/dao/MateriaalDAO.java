@@ -38,8 +38,8 @@ public class MateriaalDAO extends DAO{
 			String naam = resultSet.getString("naam");
 			String eenheid = resultSet.getString("eenheid");
 			float eenheidsprijs = resultSet.getFloat("eenheidsprijs");
-			int MateriaalCategorieId = resultSet.getInt("MateriaalCategorieId");
-			return new Materiaal(id, naam, eenheid,eenheidsprijs, MateriaalCategorieId);
+			int TypeMateriaalID = resultSet.getInt("TypeMateriaalID");
+			return new Materiaal(id, naam, eenheid,eenheidsprijs, TypeMateriaalID);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

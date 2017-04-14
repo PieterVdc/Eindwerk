@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
 		LoginDAO loginDAO = new LoginDAO();
 		
 		//TODO remove pw assign
-		loginDAO.setPassword("admin", "admin");
+		loginDAO.setPassword("", "");
 		String user = request.getParameter("user");
 		String password = request.getParameter("pw");
 		
